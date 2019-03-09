@@ -1,11 +1,12 @@
 from pyspark import SparkContext
 from pyspark.sql import SparkSession
 
-# SparkContext.setSystemProperty('spark.storage.memoryFraction', '0') # if not cache(), persist().
+SparkContext.setSystemProperty('spark.storage.memoryFraction', '0') # if no cache() and/or persist().
+SparkContext.setSystemProperty('spark.executor.memory', '2g')
 # SparkContext.setSystemProperty('spark.driver.memory', '6g')
-# SparkContext.setSystemProperty('spark.executor.memory', '2g')
+
 sc = SparkContext(appName='spectral')
-ss = SparkSession(sc)
+spark = SparkSession(sc)
 
 from pyspark.mllib.linalg.distributed import MatrixEntry, CoordinateMatrix
 from pyspark.ml.clustering import KMeans
